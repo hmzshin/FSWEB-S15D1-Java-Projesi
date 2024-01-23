@@ -18,9 +18,8 @@ public class Main {
                     break;
                 case "1":
                     String userInput = createScanner("Enter food to add to cart,  if you want to add multiple food, separate them by using ','");
-                    userInput.split(" ");
                     List<String> vegetables = new ArrayList<>(Arrays.asList(userInput.split(",")));
-                    cart = addItem(cart, vegetables);
+                    addItem(cart, vegetables);
                     print(cart);
                     break;
                 case "2":
@@ -37,30 +36,27 @@ public class Main {
     }
 
 
-    public static List addItem(List list, List item) {
-        for (int i = 0; i < item.size(); i++) {
-            if (item.get(i) != null) {
-                if (list.contains(item.get(i))) {
-                    System.out.println(item.get(i) + " is already exist on the list. So can not add to list");
+    public static void addItem(List list, List item) {
+        for (Object o : item) {
+            if (o != null) {
+                if (list.contains(o)) {
+                    System.out.println(o + " is already exist on the list. So can not add to list");
                 } else {
-                    list.add(((String) item.get(i)).trim());
+                    list.add(((String) o).trim());
                 }
             }
         }
-
-        return list;
     }
 
-    public static List removeItem(List list, List item) {
-        for (int i = 0; i < item.size(); i++) {
-            if (list.contains(item.get(i))) {
-                System.out.println(item.get(i) + " already exist and will be removed");
-                list.remove(item.get(i));
+    public static void removeItem(List list, List item) {
+        for (Object o : item) {
+            if (list.contains(o)) {
+                System.out.println(o + " already exist and will be removed");
+                list.remove(o);
             } else {
-                System.out.println(item.get(i) + " does not exist on the list so can not be removed");
+                System.out.println(o + " does not exist on the list so can not be removed");
             }
         }
-        return list;
     }
 
     public static void print(List list) {
